@@ -30,6 +30,13 @@ class Cat(models.Model):
         Achievement, through='AchievementCat'
     )
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['name', 'owner'], name='unique_name_owner'
+            )
+        ]
+
     def __str__(self):
         return self.name
 
